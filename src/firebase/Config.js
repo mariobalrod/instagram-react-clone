@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-const firebaseApp = firebase.initializeApp({
+export const app = firebase.initializeApp({
   apiKey: "AIzaSyBfabC552N1XoWyE9PPaANmyRkX-vO1fFo",
   authDomain: "instagram-clone-f9e1f.firebaseapp.com",
   databaseURL: "https://instagram-clone-f9e1f.firebaseio.com",
@@ -11,9 +11,7 @@ const firebaseApp = firebase.initializeApp({
   measurementId: "G-TJN7NJX7Q5",
 });
 
-export const db = firebaseApp.firestore();
-export const auth = firebase.auth();
-export const storage = firebase.storage();
+export const db = app.firestore();
 
-export const provider = new firebase.auth.GoogleAuthProvider();
+export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
