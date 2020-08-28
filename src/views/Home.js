@@ -6,6 +6,7 @@ import { db } from '../firebase/Config';
 // Components
 import Header from '../components/Header';
 import Posts from '../components/Posts';
+import UploadModal from '../components/UploadModal';
 
 const Home = ({history}) => {
 
@@ -34,6 +35,7 @@ const Home = ({history}) => {
     return (
         <div>
             <Header name={name} />
+            <UploadModal username={name}/>
             <Posts posts={posts} />
         </div>
     )
