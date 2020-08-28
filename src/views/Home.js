@@ -1,13 +1,17 @@
 import React, { useEffect, useContext ,useState} from "react";
-import { Button } from 'react-bootstrap';
-import firebase from 'firebase';
 import { Auth } from "../context/AuthContext";
 import { withRouter } from "react-router";
+import { db } from '../firebase/Config';
+
+// Components
+import Header from '../components/Header';
+import Posts from '../components/Posts';
 
 const Home = ({history}) => {
 
     const { user } = useContext(Auth);
-    const [name, setName] = useState(null)
+    const [ name, setName ] = useState("");
+    const [ posts, setPosts ] = useState([]);
 
     useEffect(() => {
         if (user===null) {
@@ -16,18 +20,21 @@ const Home = ({history}) => {
         user?user.displayName?setName(user.displayName):setName(user.email):setName(null)
     }, [history, user]);
 
+    useEffect(() => {
+        
+        db.collection('posts').onSnapshot(snapshot => {
+            // every time a new post is added
+            setPosts(snapshot.docs.map(doc => ({
+                id: doc.id,
+                post: doc.data()
+            })));
+        })
+    }, []);
+
     return (
         <div>
-            <h1>Hi {name}</h1>
-            <Button onClick={() => {
-                firebase.auth().signOut().then(function() {
-                    // Sign-out successful.
-                    console.log("Sign Out Succesfully")
-                  }).catch(function(error) {
-                    // An error happened.
-                    alert(error);
-                  });
-            }}>Sign Out</Button>
+            <Header name={name} />
+            <Posts posts={posts} />
         </div>
     )
 }

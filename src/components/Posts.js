@@ -10,7 +10,7 @@ const PostList = styled.div`
 
 const Posts = (props) => {
     return (
-        <PostList className="mx-auto">
+        <PostList className="mx-auto mb-5">
             {
                 props.posts.map(({id, post}) => <Post key={id} post={post} />)
             }

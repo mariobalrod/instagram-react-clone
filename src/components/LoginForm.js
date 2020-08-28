@@ -140,7 +140,7 @@ const LoginForm = (props) => {
         </Group>
         
         <Group className="mt-2" style={{textAlign: "center", fontSize: 14}}>
-            <p className="mt-2">Don't have an account? <Link to="/signup" style={{textDecoration: "none", fontWeight: "bold", color: "#57b6f8"}}>Regístrate</Link></p>
+            <p className="mt-2">Don't have an account? <Link to="/signup" style={{textDecoration: "none", fontWeight: "bold", color: "#57b6f8"}}>Sign Up</Link></p>
         </Group>
 
         <Group className="mt-2" style={{textAlign: "center", fontSize: 14}}>
