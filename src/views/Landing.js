@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { withRouter } from "react-router";
 import { app, googleAuthProvider } from "../firebase/Config";
 import { Auth } from "../context/AuthContext";
@@ -9,6 +9,7 @@ import LandingImage from '../svg/LandingImage.svg';
 
 // Components
 import LoginForm from '../components/LoginForm';
+import FooterNav from '../components/FooterNav';
 
 // Hooks
 import useWindowSize from '../hooks/useWindowSize';
@@ -28,6 +29,17 @@ const Content = styled.div`
     justify-content: center;
 `;
 
+const FooterBox = styled.div`
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
 
 const Landing = ({ history }) => {
     const { user } = useContext(Auth);
@@ -35,19 +47,16 @@ const Landing = ({ history }) => {
 
     useEffect(() => {
         if (user) {
-            console.log('User', user)
             history.push("/home");
         }
     }, [history, user]);
 
     // Login with Email function
-    const emailLogin = async e => {
-        e.preventDefault();
-        const { user, password } = e.target.elements;
+    const emailLogin = async (state) => {
 
         await app
             .auth()
-            .signInWithEmailAndPassword(user.value, password.value)
+            .signInWithEmailAndPassword(state.email, state.password)
             .then(result => {
                 console.log(result);
                 history.push("/home");
@@ -88,6 +97,10 @@ const Landing = ({ history }) => {
                     <LoginForm emailLogin={emailLogin} googleLogin={googleLogin} />
                 </div>
             </Content>
+            <FooterBox>
+                <FooterNav />
+            </FooterBox>
+
       </Main>
     );
 }

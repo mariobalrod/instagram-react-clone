@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from 'styled-components';
 import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -64,11 +64,37 @@ const Putton = styled.a`
 `;
 
 const LoginForm = (props) => {
+
+    const [state, setState] = useState({
+      email: "",
+      password: "",
+    });
+
+    const handleChangle = (e) => {
+      e.preventDefault();
+      const value = e.target.value;
+      setState({
+        ...state,
+        [e.target.name]: value
+      });
+    }
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+
+      props.emailLogin(state);
+
+      setState({
+        email: "",
+        password: "",
+      });
+    }
+
     return (
       <Box>
         <Group>
           <Row1>
-            <div className="mx-auto mt-4" style={{ width: "30%" }}>
+            <div className="mx-auto mt-5" style={{ width: "40%" }}>
               <img
                 style={{ width: "100%", background: "#ffffff" }}
                 src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
@@ -78,11 +104,14 @@ const LoginForm = (props) => {
           </Row1>
 
           <Row2>
-            <Form className="mx-auto">
+            <Form className="mx-auto" onSubmit={handleSubmit}>
               <Form.Group>
                 <Form.Control
                   type="email"
                   placeholder="Enter email"
+                  value={state.email}
+                  name="email"
+                  onChange={handleChangle}
                   size="sm"
                 />
               </Form.Group>
@@ -91,30 +120,33 @@ const LoginForm = (props) => {
                 <Form.Control
                   type="password"
                   placeholder="Password"
+                  value={state.password}
+                  name="password"
+                  onChange={handleChangle}
                   size="sm"
                 />
               </Form.Group>
               <Button variant="primary" type="submit" block>
-                Login
+                Log In
               </Button>
             </Form>
           </Row2>
 
           <Row3 className="mx-auto" style={{ textAlign: "center", paddingTop: 10 }}>
             <Link style={{ fontSize: 14, textDecoration: "none", fontWeight: "bold", color: "#385185" }} onClick={props.googleLogin}>
-                Login with Google
+                Log in with Google
             </Link>
           </Row3>
         </Group>
         
         <Group className="mt-2" style={{textAlign: "center", fontSize: 14}}>
-            <p className="mt-2">¿No tienes una cuenta? <Link to="/signup" style={{textDecoration: "none", fontWeight: "bold", color: "#57b6f8"}}>Regístrate</Link></p>
+            <p className="mt-2">Don't have an account? <Link to="/signup" style={{textDecoration: "none", fontWeight: "bold", color: "#57b6f8"}}>Regístrate</Link></p>
         </Group>
 
         <Group className="mt-2" style={{textAlign: "center", fontSize: 14}}>
           <Row4>
               <div>
-                <p>Descargar app</p>
+                <p>Get the app</p>
               </div>
               <PuttonGroup>
                 <Putton target="_blank" href="https://apps.apple.com/app/instagram/id389801252?vt=lo">
