@@ -12,7 +12,7 @@ const Posts = (props) => {
     return (
         <PostList className="mx-auto mb-5">
             {
-                props.posts.map(({id, post}) => <Post key={id} post={post} />)
+                props.posts.map(({id, post}) => <Post key={id} post={post} postId={id} username={props.name} />)
             }
         </PostList>
     )

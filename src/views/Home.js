@@ -23,7 +23,7 @@ const Home = ({history}) => {
 
     useEffect(() => {
         
-        db.collection('posts').onSnapshot(snapshot => {
+        db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
             // every time a new post is added
             setPosts(snapshot.docs.map(doc => ({
                 id: doc.id,
@@ -36,7 +36,7 @@ const Home = ({history}) => {
         <div>
             <Header name={name} />
             <UploadModal username={name}/>
-            <Posts posts={posts} />
+            <Posts posts={posts} name={name}/>
         </div>
     )
 }

@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
+import { db } from '../firebase/Config';
 import styled from 'styled-components';
+import { Form , Button} from 'react-bootstrap';
+import firebase from 'firebase';
+
+// Components
+import Comments from './Comments';
 
 const PostCard = styled.div`
     margin-top: 50px;
@@ -38,8 +44,49 @@ const PostImage = styled.img`
     border-bottom: 1px solid lightgray;  
 `;
 
+const Line = styled.span`
+    margin: 12px;
+    display: block;
+    width: 80%;
+    border-top: 1px solid black;
+    background: transparent;
+`;
+
 const Post = (props) => {
-    const { post } = props;
+    const { post, postId, username } = props;
+
+    const [comments, setComments] = useState([]);
+    const [comment, setComment] = useState('');
+
+    useEffect(() => {
+        let unsubscribe;
+        if(postId) {
+            unsubscribe = db
+                .collection('posts')
+                .doc(postId)
+                .collection('comments')
+                .orderBy('timestamp', 'asc')
+                .onSnapshot((snapshot) => {
+                    setComments(snapshot.docs.map((doc) => doc.data()));
+                });
+        }
+
+        return () => {
+            unsubscribe();
+        };
+    }, [postId]);
+
+    const postComment = (e) => {
+        e.preventDefault();
+
+        db.collection('posts').doc(postId).collection('comments').add({
+            text: comment,
+            username: username,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        setComment('');
+    }
 
     return (
         <PostCard className="mx-auto">
@@ -66,6 +113,15 @@ const Post = (props) => {
                 <Username className="mr-3">{post.username}</Username>
                 <Caption>{post.caption}</Caption>
             </PostFooter>
+
+            <Line className="mx-auto"/>
+            
+            <Comments comments={comments} />
+
+            <Form onSubmit={postComment} style={{display: "flex", background: "transparent"}}>
+                <Form.Control as="textarea" rows="1" placeholder="Enter your comment ..." value={comment} name="comment" onChange={(e) => { setComment(e.target.value) }} required/>
+                <Button variant="dark" type="submit">Post</Button>
+            </Form>
 
         </PostCard>
     )
