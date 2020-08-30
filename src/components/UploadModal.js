@@ -79,7 +79,7 @@ const UploadModal = (props) => {
   return (
     <div style={{ width: "100%", display: "flex" }}>
       <div className="mx-auto mt-5">
-        <Link variant="primary" onClick={handleShow} style={{}}>
+        <Link to="#" onClick={handleShow} style={{}}>
           <BackupIcon style={{ fontSize: 50 }} />
         </Link>
       </div>

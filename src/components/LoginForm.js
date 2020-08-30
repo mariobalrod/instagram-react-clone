@@ -133,7 +133,7 @@ const LoginForm = (props) => {
           </Row2>
 
           <Row3 className="mx-auto" style={{ textAlign: "center", paddingTop: 10 }}>
-            <Link style={{ fontSize: 14, textDecoration: "none", fontWeight: "bold", color: "#385185" }} onClick={props.googleLogin}>
+            <Link to="#" style={{ fontSize: 14, textDecoration: "none", fontWeight: "bold", color: "#385185" }} onClick={props.googleLogin}>
                 Log in with Google
             </Link>
           </Row3>

@@ -7,6 +7,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 const Logout = () => {
     return (
       <Link
+      to="#"
         className="ml-4"
         onClick={() => {
           firebase

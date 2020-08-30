@@ -24,9 +24,10 @@ const Comments = (props) => {
     return (
         <div className="mt-3 mb-3">
             {
-                props.comments.map((comment) => {
+                props.comments.map(commentU => {
+                    const {id, comment} = commentU;
                     return (
-                        <Box key={comment.id}>
+                        <Box key={id}>
                             <Username className="mr-3">{comment.username}</Username>
                             <Caption>{comment.text}</Caption>
                         </Box>

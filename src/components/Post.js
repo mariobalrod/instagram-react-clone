@@ -69,7 +69,10 @@ const Post = (props) => {
                 .collection('comments')
                 .orderBy('timestamp', 'asc')
                 .onSnapshot((snapshot) => {
-                    setComments(snapshot.docs.map((doc) => doc.data()));
+                    setComments(snapshot.docs.map((doc) => ({
+                        id: doc.id,
+                        comment: doc.data()
+                    })));
                 });
         }
 
