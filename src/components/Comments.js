@@ -5,16 +5,19 @@ const Box = styled.div`
     display: flex;
     align-items: center;
     padding: 5px 20px;
+    background: #ffffff;
 `;
 
 const Username = styled.h4`
     margin: 0px;
     font-size: 14px;
+    background: #ffffff;
 `;
 
 const Caption = styled.p`
     font-size: 14px;
     margin: 0px;    
+    background: #ffffff;
 `;
 
 const Comments = (props) => {

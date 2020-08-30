@@ -25,16 +25,19 @@ const PostFooter = styled.div`
     display: flex;
     align-items: center;
     padding: 20px;
+    background: #ffffff;
 `;
 
 const Username = styled.h4`
     margin: 0px;
     font-size: 14px;
+    background: #ffffff;
 `;
 
 const Caption = styled.p`
     font-size: 14px;
     margin: 0px;    
+    background: #ffffff;
 `;
 
 const PostImage = styled.img`
@@ -49,7 +52,6 @@ const Line = styled.span`
     display: block;
     width: 80%;
     border-top: 1px solid black;
-    background: transparent;
 `;
 
 const Post = (props) => {
@@ -114,7 +116,9 @@ const Post = (props) => {
                 <Caption>{post.caption}</Caption>
             </PostFooter>
 
-            <Line className="mx-auto"/>
+            <div style={{background: "#ffffff"}}>
+                <Line className="mx-auto"/>
+            </div>
             
             <Comments comments={comments} />
 

@@ -59,13 +59,13 @@ const UploadModal = (props) => {
                 .child(image.name)
                 .getDownloadURL()
                 .then(url => {
-                    // Post image inside firebase db
-                    db.collection('posts').add({
-                        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                        caption: caption,
-                        imageUrl: url,
-                        username: props.username
-                    })
+                  // Post image inside firebase db
+                  db.collection("posts").add({
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    caption: caption,
+                    imageUrl: url,
+                    username: props.username
+                  });
                 });
 
                 // Reset Elements

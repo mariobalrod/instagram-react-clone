@@ -17,8 +17,10 @@ const Home = ({history}) => {
     useEffect(() => {
         if (user===null) {
             history.push("/");
+        } else {
+            if(user.displayName) { setName(user.displayName) } else if (user.email) { setName(user.email) } else { setName(null) }
+            
         }
-        user?user.displayName?setName(user.displayName):setName(user.email):setName(null)
     }, [history, user]);
 
     useEffect(() => {
