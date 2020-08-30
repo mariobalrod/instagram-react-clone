@@ -2,34 +2,30 @@
 
 This app is an Instagram Clone, done with React Js and Firebase. 
 
+Go test the App :  [Intagram-clone](https://instagram-clone-f9e1f.web.app/)
+
 - Google Auth with Firebase
 - Email Auth with Firebase
 - Responsive Design
 - Styled-components
 - Hooks
-- React-router
+- React-router   
 
 
 
-![Template1](./docs/Template1.png)
-
-
-
-
-
-
-
-![Template2](./docs/Template2.png)
+![Template1](./docs/Template1.png)   
 
 
 
 
 
+![Template2](./docs/Template2.png)  
 
 
-![Responsive](./docs/Responsive.png)
 
 
+
+![Responsive](./docs/Responsive.png)  
 
 
 
@@ -50,3 +46,4 @@ or Email Me: marioballestero.rdg@gmail.com
 ## Authors
 
 - **Mario Ballestero** - _Development_ - [mariobalrod](https://github.com/mariobalrod)
+
